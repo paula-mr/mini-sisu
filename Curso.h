@@ -4,11 +4,16 @@
 #include <iostream>
 #include <string>
 
+#include "Lista.h"
+#include "Pessoa.h"
+
 class Curso {
     private:
         int codigo;
         std::string nome;
         int quantidadeVagas;
+        Lista<Pessoa>* aprovados;
+        Lista<Pessoa>* espera;
         static int contador;
 
     public:
@@ -19,6 +24,9 @@ class Curso {
         std::string getNome();
         void setQuantidadeVagas(int quantidadeVagas);
         int getQuantidadeVagas();
+        void inserirEspera(Pessoa* pessoa);
+        Lista<Pessoa>* getAprovados();
+        Lista<Pessoa>* getEspera();
 };
 
 #endif

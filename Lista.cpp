@@ -28,6 +28,26 @@ void Lista<T>::insereFim(T* tipo) {
 }
 
 template <class T>
+void Lista<T>::insereApos(Item<T>* itemAnterior, T* tipo) {
+    Item<T>* item = new Item<T>();
+    item->setTipo(tipo);
+
+    if (itemAnterior == nullptr)
+        this->head = item;
+    else {
+        Item<T>* auxiliar = new Item<T>();
+        auxiliar = itemAnterior->getProximo();
+
+        itemAnterior->setProximo(item);
+
+        item->setProximo(auxiliar);
+        item->setAnterior(itemAnterior);
+
+        auxiliar->setAnterior(item);
+    }
+}
+
+template <class T>
 void Lista<T>::retira(Item<T>* item) {
     Item<T>* anterior = item->getAnterior();
     Item<T>* proximo = item->getProximo();

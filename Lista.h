@@ -17,6 +17,7 @@ class Lista {
         Lista();
         ~Lista();
         void insereFim(T* item);
+        void insereApos(Item<T>* itemAnterior, T* tipo);
         void retira(Item<T>* item);
         Item<T>* getHead();
 };

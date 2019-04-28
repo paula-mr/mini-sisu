@@ -42,7 +42,8 @@ void imprimirCursos(Lista<Curso>* cursos) {
 
     while (item != nullptr) {
         Curso* curso = item->getTipo();
-        std::cout << curso->getNome() << " " << curso->getQuantidadeVagas() << "\n";
+        std::cout << curso->getCodigo() << " " << curso->getNome() << " "
+                    << curso->getQuantidadeVagas() << "\n";
 
         item = item->getProximo();
     }

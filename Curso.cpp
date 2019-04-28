@@ -3,8 +3,18 @@
 
 #include "Curso.h"
 
-Curso::Curso() = default;
+int Curso::contador = 0;
+
+Curso::Curso() {
+    this->codigo = contador;
+    contador++;
+}
+
 Curso::~Curso() = default;
+
+int Curso::getCodigo() {
+    return this->codigo;
+}
 
 void Curso::setNome(std::string nome) {
     this->nome = nome;

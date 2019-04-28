@@ -16,23 +16,27 @@ void Item<T>::setTipo(T* tipo) {
 }
 
 template <class T>
-<T>* Item::getTipo() {
+T* Item<T>::getTipo() {
     return tipo;
 }
 
-void Item::setProximo(Item* proximo) {
+template <class T>
+void Item<T>::setProximo(Item* proximo) {
     this->proximo = proximo;
 }
 
-Item* Item::getProximo() {
+template <class T>
+Item<T>* Item<T>::getProximo() {
     return proximo;
 }
 
-void Item::setAnterior(Item* anterior) {
+template <class T>
+void Item<T>::setAnterior(Item<T>* anterior) {
     this->anterior = anterior;
 }
 
-Item* Item::getAnterior() {
+template <class T>
+Item<T>* Item<T>::getAnterior() {
     return anterior;
 }
 

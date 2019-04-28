@@ -16,18 +16,18 @@ void Lista<T>::insereFim(Item<T>* item) {
     if (this->head == nullptr)
         this->head = item;
     else {
-        this->head.setProximo(item);
-        this->head.setAnterior0(nullptr);
+        this->head->setProximo(item);
+        this->head->setAnterior(nullptr);
     }
 }
 
 template <class T>
 void Lista<T>::retira(Item<T>* item) {
-    Item<T>* anterior = item.getAnterior();
-    Item<T>* proximo = item.getProximo();
+    Item<T>* anterior = item->getAnterior();
+    Item<T>* proximo = item->getProximo();
 
-    anterior.setProximo(proximo);
-    proximo.setAnterior(anterior);
+    anterior->setProximo(proximo);
+    proximo->setAnterior(anterior);
 }
 
 template <class T>

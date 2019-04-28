@@ -2,6 +2,8 @@
 #define LISTA_CPP
 
 #include "Lista.h"
+#include "Curso.h"
+#include "Pessoa.h"
 
 template <class T>
 Lista<T>::Lista() {
@@ -60,5 +62,8 @@ template <class T>
 Item<T>* Lista<T>::getHead() {
     return head;
 }
+
+template class Lista<Curso>;
+template class Lista<Pessoa>;
 
 #endif

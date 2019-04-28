@@ -1,6 +1,8 @@
 #include <string>
 
 #include "Lista.h"
+#include "Curso.h"
+#include "Pessoa.h"
 
 Lista<Curso>* lerCursos(int quantidadeCursos);
 Lista<Pessoa>* lerPessoas(int quantidadeAlunos);

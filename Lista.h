@@ -4,8 +4,6 @@
 #include <iostream>
 
 #include "Item.h"
-#include "Curso.h"
-#include "Pessoa.h"
 
 template <class T>
 
@@ -21,8 +19,5 @@ class Lista {
         void retira(Item<T>* item);
         Item<T>* getHead();
 };
-
-template class Lista<Curso>;
-template class Lista<Pessoa>;
 
 #endif

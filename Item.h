@@ -3,29 +3,23 @@
 
 #include <iostream>
 
-#include "Curso.h"
-#include "Pessoa.h"
-
 template <class T>
 
 class Item {
     private:
         T* tipo;
-        Item* anterior;
-        Item* proximo;
+        Item<T>* anterior;
+        Item<T>* proximo;
 
     public:
         Item();
         ~Item();
         void setTipo(T* tipo);
         T* getTipo();
-        void setProximo(Item* proximo);
-        Item* getProximo();
-        void setAnterior(Item* anterior);
-        Item* getAnterior();
+        void setProximo(Item<T>* proximo);
+        Item<T>* getProximo();
+        void setAnterior(Item<T>* anterior);
+        Item<T>* getAnterior();
 };
-
-template class Item<Curso>;
-template class Item<Pessoa>;
 
 #endif

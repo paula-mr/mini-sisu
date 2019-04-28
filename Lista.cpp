@@ -3,31 +3,36 @@
 
 #include "Lista.h"
 
-Lista::Lista() {
+template <class T>
+Lista<T>::Lista() {
     this->head = nullptr;
 }
 
-void Lista::insereFim(Item* item) {
-    if (*head == nullptr)
-        *head = item;
+template <class T>
+Lista<T>::~Lista() = default;
+
+template <class T>
+void Lista<T>::insereFim(Item<T>* item) {
+    if (this->head == nullptr)
+        this->head = item;
     else {
-        *head.setProximo(item);
-        *head.setAnterior0(nullptr);
+        this->head.setProximo(item);
+        this->head.setAnterior0(nullptr);
     }
 }
 
-void Lista::retira(Item* item) {
-    Item* anterior = item.getAnterior();
-    Item* proximo = item.getProximo();
+template <class T>
+void Lista<T>::retira(Item<T>* item) {
+    Item<T>* anterior = item.getAnterior();
+    Item<T>* proximo = item.getProximo();
 
     anterior.setProximo(proximo);
     proximo.setAnterior(anterior);
 }
 
-Lista* Lista::getHead() {
+template <class T>
+Item<T>* Lista<T>::getHead() {
     return head;
 }
-
-template class Lista<Curso>;
 
 #endif

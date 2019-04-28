@@ -15,7 +15,7 @@ class Lista {
     public:
         Lista();
         ~Lista();
-        void insereFim(Item<T>* item);
+        void insereFim(T* item);
         void retira(Item<T>* item);
         Item<T>* getHead();
 };

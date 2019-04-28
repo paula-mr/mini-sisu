@@ -12,12 +12,18 @@ template <class T>
 Lista<T>::~Lista() = default;
 
 template <class T>
-void Lista<T>::insereFim(Item<T>* item) {
+void Lista<T>::insereFim(T* tipo) {
+    Item<T>* item = new Item<T>();
+    item->setTipo(tipo);
+
     if (this->head == nullptr)
         this->head = item;
     else {
         this->head->setProximo(item);
         this->head->setAnterior(nullptr);
+
+        item->setAnterior(head);
+        item->setProximo(nullptr);
     }
 }
 

@@ -5,6 +5,7 @@
 
 #include "Item.h"
 #include "Curso.h"
+#include "Pessoa.h"
 
 template <class T>
 
@@ -21,5 +22,6 @@ class Lista {
 };
 
 template class Lista<Curso>;
+template class Lista<Pessoa>;
 
 #endif

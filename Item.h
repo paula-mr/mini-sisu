@@ -3,6 +3,9 @@
 
 #include <iostream>
 
+#include "Curso.h"
+#include "Pessoa.h"
+
 template <class T>
 
 class Item {
@@ -21,5 +24,8 @@ class Item {
         void setAnterior(Item* anterior);
         Item* getAnterior();
 };
+
+template class Item<Curso>;
+template class Item<Pessoa>;
 
 #endif

@@ -2,7 +2,6 @@
 #define LISTA_CPP
 
 #include "Item.h"
-#include "Curso.h"
 
 template <class T>
 Item<T>::Item() = default;
@@ -39,7 +38,5 @@ template <class T>
 Item<T>* Item<T>::getAnterior() {
     return anterior;
 }
-
-template class Item<Curso>;
 
 #endif

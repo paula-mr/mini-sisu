@@ -138,11 +138,8 @@ void imprimirCursos(Lista<Curso>* cursos) {
 
     while (item != nullptr) {
         Curso* curso = item->getTipo();
-        Item<Pessoa>* ultimoAprovado = curso->getAprovados()->getTail();
 
-        float notaCorte = ultimoAprovado == nullptr ? 0 : ultimoAprovado->getTipo()->getNota();
-
-        std::cout << curso->getNome() << " " << notaCorte
+        std::cout << curso->getNome() << " " << curso->getNotaCorte()
                 << "\nClassificados\n";
 
         imprimirPessoas(curso->getAprovados());

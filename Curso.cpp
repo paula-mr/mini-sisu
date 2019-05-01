@@ -75,6 +75,15 @@ Lista<Pessoa>* Curso::getEspera() {
     return this->espera;
 }
 
+float Curso::getNotaCorte() {
+    Item<Pessoa>* ultimoAprovado = this->getAprovados()->getTail();
+
+    float notaCorte = ultimoAprovado == nullptr ? 0 : ultimoAprovado->getTipo()->getNota();
+    notaCorte = this->getAprovados()->getTamanho() == this->quantidadeVagas ? notaCorte : 0;
+
+    return notaCorte;
+}
+
 Curso* Curso::recuperarPorCodigo(Lista<Curso>* cursos, int codigo) {
     Item<Curso>* item = cursos->getHead();
 

@@ -24,6 +24,7 @@ class Curso {
         std::string getNome();
         void setQuantidadeVagas(int quantidadeVagas);
         int getQuantidadeVagas();
+        float getNotaCorte();
         void inserirEspera(Pessoa* pessoa);
         Lista<Pessoa>* getAprovados();
         Lista<Pessoa>* getEspera();

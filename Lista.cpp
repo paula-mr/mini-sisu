@@ -9,6 +9,7 @@ template <class T>
 Lista<T>::Lista() {
     this->head = nullptr;
     this->tail = nullptr;
+    this->tamanho = 0;
 }
 
 template <class T>
@@ -91,6 +92,12 @@ void Lista<T>::retira(Item<T>* item) {
         proximo->setAnterior(anterior);
 
     this->tamanho--;
+
+    if (this->tamanho == 0) {
+        this->head = nullptr;
+        this->tail = nullptr;
+    }
+
 }
 
 template <class T>

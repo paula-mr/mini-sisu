@@ -113,16 +113,17 @@ void validarAprovado(Lista<Curso>* cursos, Item<Pessoa>* item) {
         if(pessoa->isAprovadaSegundaOpcao()) {
             Curso* segundaOpcao = Curso::recuperarPorCodigo(cursos, pessoa->getSegundaOpcao());
 
-            Item<Pessoa>* novoAprovado = segundaOpcao->getEspera()->getHead();
-            segundaOpcao->getEspera()->retira(novoAprovado);
-            segundaOpcao->getAprovados()->insereFim(novoAprovado->getTipo());
-
             Item<Pessoa>* aprovadoPrimeiraOpcao = Pessoa::recuperarPorCodigo(segundaOpcao->getAprovados(), pessoa->getCodigo());
             segundaOpcao->getAprovados()->retira(aprovadoPrimeiraOpcao);
 
-            novoAprovado->getTipo()->setAprovadaCurso(segundaOpcao->getCodigo());
+            Item<Pessoa>* novoAprovado = segundaOpcao->getEspera()->getHead();
 
-            validarAprovado(cursos, novoAprovado);
+            if (novoAprovado != nullptr) {
+                segundaOpcao->getEspera()->retira(novoAprovado);
+                segundaOpcao->getAprovados()->insereFim(novoAprovado->getTipo());
+                novoAprovado->getTipo()->setAprovadaCurso(segundaOpcao->getCodigo());
+                validarAprovado(cursos, novoAprovado);
+            }
 
         } else {
             Curso* segundaOpcao = Curso::recuperarPorCodigo(cursos, pessoa->getSegundaOpcao());
@@ -137,9 +138,11 @@ void imprimirCursos(Lista<Curso>* cursos) {
 
     while (item != nullptr) {
         Curso* curso = item->getTipo();
-        Pessoa* ultimoAprovado = curso->getAprovados()->getTail()->getTipo();
+        Item<Pessoa>* ultimoAprovado = curso->getAprovados()->getTail();
 
-        std::cout << curso->getNome() << " " << ultimoAprovado->getNota()
+        float notaCorte = ultimoAprovado == nullptr ? 0 : ultimoAprovado->getTipo()->getNota();
+
+        std::cout << curso->getNome() << " " << notaCorte
                 << "\nClassificados\n";
 
         imprimirPessoas(curso->getAprovados());

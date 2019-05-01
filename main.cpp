@@ -6,6 +6,8 @@
 
 Lista<Curso>* lerCursos(int quantidadeCursos);
 Lista<Pessoa>* lerPessoas(int quantidadeAlunos, Lista<Curso>* cursos);
+void calcularAprovados(Lista<Curso>* cursos, Lista<Pessoa>* pessoas);
+
 void imprimirCursos(Lista<Curso>* cursos);
 void imprimirPessoas(Lista<Pessoa>* pessoas);
 
@@ -19,6 +21,7 @@ int main() {
     cursos = lerCursos(quantidadeCursos);
     pessoas = lerPessoas(quantidadeAlunos, cursos);
 
+    calcularAprovados(cursos, pessoas);
     imprimirCursos(cursos);
 
     return 0;
@@ -75,6 +78,16 @@ Lista<Pessoa>* lerPessoas(int quantidadeAlunos, Lista<Curso>* cursos) {
     return pessoas;
 }
 
+void calcularAprovados(Lista<Curso>* cursos, Lista<Pessoa>* pessoas) {
+    Item<Curso>* itemCurso = cursos->getHead();
+
+    while (itemCurso != nullptr) {
+        Curso* curso = itemCurso->getTipo();
+        curso->calcularAprovados();
+
+        itemCurso = itemCurso->getProximo();
+    }
+}
 
 void imprimirCursos(Lista<Curso>* cursos) {
     Item<Curso>* item = cursos->getHead();
@@ -84,7 +97,7 @@ void imprimirCursos(Lista<Curso>* cursos) {
         std::cout << "\n" << curso->getCodigo() << " " << curso->getNome() << " "
                     << curso->getQuantidadeVagas() << "\n";
 
-        imprimirPessoas(curso->getEspera());
+        imprimirPessoas(curso->getAprovados());
         std::cout << "\n\n";
 
         item = item->getProximo();

@@ -90,4 +90,17 @@ Curso* Curso::recuperarPorCodigo(Lista<Curso>* cursos, int codigo) {
     return nullptr;
 }
 
+void Curso::calcularAprovados() {
+    Item<Pessoa>* item = this->espera->getHead();
+
+    std::cout << "\nteste \n";
+    for (int i=0; i < this->quantidadeVagas; i++) {
+        this->aprovados->insereInicio(item->getTipo());
+
+        item = item->getProximo();
+
+        this->espera->retira(item->getAnterior());
+    }
+}
+
 #endif

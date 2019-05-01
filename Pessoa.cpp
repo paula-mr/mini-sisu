@@ -61,7 +61,7 @@ int Pessoa::compararColocacao(Pessoa* base, Pessoa* comparacao, int codigoCurso)
     if (comparacao->getPrimeiraOpcao() == codigoCurso && base->getPrimeiraOpcao() != codigoCurso)
         return BASE_MENOR;
 
-    return base->codigo > comparacao->codigo ? BASE_MAIOR : BASE_MENOR;
+    return base->codigo > comparacao->codigo ? BASE_MENOR : BASE_MAIOR;
 }
 
 #endif

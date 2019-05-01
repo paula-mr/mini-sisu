@@ -10,14 +10,17 @@ template <class T>
 class Lista {
     private:
         Item<T>* head;
+        Item<T>* tail;
 
     public:
         Lista();
         ~Lista();
-        void insereFim(T* item);
+        void insereInicio(T* tipo);
+        void insereFim(T* tipo);
         void insereApos(Item<T>* itemAnterior, T* tipo);
-        void retira(Item<T>* item);
+        void retira(Item<T>* tipo);
         Item<T>* getHead();
+        Item<T>* getTail();
 };
 
 #endif

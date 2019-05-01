@@ -35,17 +35,27 @@ int Curso::getQuantidadeVagas() {
 }
 
 void Curso::inserirEspera(Pessoa* pessoa) {
-
     if (espera->getHead() == nullptr) {
         espera->insereFim(pessoa);
     } else {
+        bool itemInserido = false;
+
+        if (Pessoa::compararColocacao(espera->getHead()->getTipo(), pessoa, this->codigo) < 0) {
+            espera->insereInicio(pessoa);
+            itemInserido = true;
+        }
+
+        if (Pessoa::compararColocacao(espera->getTail()->getTipo(), pessoa, this->codigo) > 0) {
+            espera->insereFim(pessoa);
+            itemInserido = true;
+        }
+
         Item<Pessoa>* item = espera->getHead();
         Item<Pessoa>* itemAnterior = nullptr;
-        bool itemInserido = false;
 
         while (item != nullptr && !itemInserido) {
 
-            if (Pessoa::compararColocacao(item->getTipo(), pessoa, this->codigo) < 0) {
+            if (Pessoa::compararColocacao(item->getTipo(), pessoa, this->codigo) > 0) {
                 espera->insereApos(itemAnterior, pessoa);
                 itemInserido = true;
             }
@@ -63,6 +73,21 @@ Lista<Pessoa>* Curso::getAprovados() {
 
 Lista<Pessoa>* Curso::getEspera() {
     return this->espera;
+}
+
+Curso* Curso::recuperarPorCodigo(Lista<Curso>* cursos, int codigo) {
+    Item<Curso>* item = cursos->getHead();
+
+    while (item != nullptr) {
+        Curso* curso = item->getTipo();
+
+        if (curso->getCodigo() == codigo)
+            return curso;
+
+        item = item->getProximo();
+    }
+
+    return nullptr;
 }
 
 #endif

@@ -5,7 +5,7 @@
 #include "Pessoa.h"
 
 Lista<Curso>* lerCursos(int quantidadeCursos);
-Lista<Pessoa>* lerPessoas(int quantidadeAlunos);
+Lista<Pessoa>* lerPessoas(int quantidadeAlunos, Lista<Curso>* cursos);
 void imprimirCursos(Lista<Curso>* cursos);
 void imprimirPessoas(Lista<Pessoa>* pessoas);
 
@@ -17,7 +17,9 @@ int main() {
     std::cin >> quantidadeCursos >> quantidadeAlunos;
 
     cursos = lerCursos(quantidadeCursos);
-    pessoas = lerPessoas(quantidadeAlunos);
+    pessoas = lerPessoas(quantidadeAlunos, cursos);
+
+    imprimirCursos(cursos);
 
     return 0;
 }
@@ -43,7 +45,7 @@ Lista<Curso>* lerCursos(int quantidadeCursos) {
 }
 
 
-Lista<Pessoa>* lerPessoas(int quantidadeAlunos) {
+Lista<Pessoa>* lerPessoas(int quantidadeAlunos, Lista<Curso>* cursos) {
     Lista<Pessoa>* pessoas = new Lista<Pessoa>();
 
     for (int i=0; i<quantidadeAlunos; i++) {
@@ -61,6 +63,13 @@ Lista<Pessoa>* lerPessoas(int quantidadeAlunos) {
         pessoa->setSegundaOpcao(segundaOpcao);
 
         pessoas->insereFim(pessoa);
+
+        Curso* cursoPrimeiraOpcao = Curso::recuperarPorCodigo(cursos, primeiraOpcao);
+        Curso* cursoSegundaOpcao = Curso::recuperarPorCodigo(cursos, segundaOpcao);
+
+        cursoPrimeiraOpcao->inserirEspera(pessoa);
+        cursoSegundaOpcao->inserirEspera(pessoa);
+
     }
 
     return pessoas;
@@ -72,8 +81,11 @@ void imprimirCursos(Lista<Curso>* cursos) {
 
     while (item != nullptr) {
         Curso* curso = item->getTipo();
-        std::cout << curso->getCodigo() << " " << curso->getNome() << " "
+        std::cout << "\n" << curso->getCodigo() << " " << curso->getNome() << " "
                     << curso->getQuantidadeVagas() << "\n";
+
+        imprimirPessoas(curso->getEspera());
+        std::cout << "\n\n";
 
         item = item->getProximo();
     }

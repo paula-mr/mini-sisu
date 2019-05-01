@@ -27,6 +27,8 @@ class Curso {
         void inserirEspera(Pessoa* pessoa);
         Lista<Pessoa>* getAprovados();
         Lista<Pessoa>* getEspera();
+
+        static Curso* recuperarPorCodigo(Lista<Curso>* cursos, int codigo);
 };
 
 #endif

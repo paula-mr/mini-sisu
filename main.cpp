@@ -139,7 +139,7 @@ void imprimirCursos(Lista<Curso>* cursos) {
         Curso* curso = item->getTipo();
         Pessoa* ultimoAprovado = curso->getAprovados()->getTail()->getTipo();
 
-        std::cout << "\n" << curso->getNome() << " " << ultimoAprovado->getNota()
+        std::cout << curso->getNome() << " " << ultimoAprovado->getNota()
                 << "\nClassificados\n";
 
         imprimirPessoas(curso->getAprovados());

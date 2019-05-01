@@ -93,15 +93,15 @@ Curso* Curso::recuperarPorCodigo(Lista<Curso>* cursos, int codigo) {
 void Curso::calcularAprovados() {
     Item<Pessoa>* item = this->espera->getHead();
 
-    for (int i=0; i < this->quantidadeVagas; i++) {
+    for (int i=0; i < this->quantidadeVagas && item != nullptr; i++) {
         Pessoa* pessoa = item->getTipo();
         this->aprovados->insereFim(pessoa);
 
         pessoa->setAprovadaCurso(this->codigo);
 
+        this->espera->retira(item);
         item = item->getProximo();
 
-        this->espera->retira(item->getAnterior());
     }
 }
 

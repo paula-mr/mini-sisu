@@ -4,6 +4,9 @@
 #include <iostream>
 #include <string>
 
+#include "Item.h"
+#include "Lista.h"
+
 class Pessoa {
     private:
         int codigo;
@@ -12,6 +15,8 @@ class Pessoa {
         int primeiraOpcao;
         int segundaOpcao;
         static int contador;
+        bool aprovadaPrimeiraOpcao;
+        bool aprovadaSegundaOpcao;
 
     public:
         Pessoa();
@@ -25,8 +30,13 @@ class Pessoa {
         int getPrimeiraOpcao();
         void setSegundaOpcao(int opcao);
         int getSegundaOpcao();
+        bool isAprovadaPrimeiraOpcao();
+        void setAprovadaPrimeiraOpcao();
+        bool isAprovadaSegundaOpcao();
+        void setAprovadaSegundaOpcao();
 
         static int compararColocacao(Pessoa* base, Pessoa* comparacao, int codigoCurso);
+        static Item<Pessoa>* recuperarPorCodigo(Lista<Pessoa>* pessoas, int codigo);
 };
 
 #endif

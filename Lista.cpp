@@ -79,11 +79,11 @@ void Lista<T>::retira(Item<T>* item) {
     Item<T>* anterior = item->getAnterior();
     Item<T>* proximo = item->getProximo();
 
-    if (item == head)
-        head = proximo;
+    if (item == this->head)
+        this->head = proximo;
 
-    if (item == tail)
-        tail = anterior;
+    if (item == this->tail)
+        this->tail = anterior;
 
     if (anterior != nullptr)
         anterior->setProximo(proximo);

@@ -7,6 +7,8 @@ int Pessoa::contador = 0;
 
 Pessoa::Pessoa() {
     this->codigo = contador;
+    this->aprovadaPrimeiraOpcao = false;
+    this->aprovadaSegundaOpcao = false;
     contador++;
 }
 
@@ -46,6 +48,22 @@ int Pessoa::getSegundaOpcao() {
     return this->segundaOpcao;
 }
 
+bool Pessoa::isAprovadaPrimeiraOpcao() {
+    return this->aprovadaPrimeiraOpcao;
+}
+
+void Pessoa::setAprovadaPrimeiraOpcao() {
+    this->aprovadaPrimeiraOpcao = true;
+}
+
+bool Pessoa::isAprovadaSegundaOpcao() {
+    return this->aprovadaSegundaOpcao;
+}
+
+void Pessoa::setAprovadaSegundaOpcao() {
+    this->aprovadaSegundaOpcao = true;
+}
+
 int Pessoa::compararColocacao(Pessoa* base, Pessoa* comparacao, int codigoCurso) {
     const int BASE_MAIOR = 1, BASE_MENOR = -1;
 
@@ -62,6 +80,21 @@ int Pessoa::compararColocacao(Pessoa* base, Pessoa* comparacao, int codigoCurso)
         return BASE_MENOR;
 
     return base->codigo > comparacao->codigo ? BASE_MENOR : BASE_MAIOR;
+}
+
+Item<Pessoa>* Pessoa::recuperarPorCodigo(Lista<Pessoa>* pessoas, int codigo) {
+    Item<Pessoa>* item = pessoas->getHead();
+
+    while (item != nullptr) {
+        Pessoa* pessoa = item->getTipo();
+
+        if (pessoa->getCodigo() == codigo)
+            return item;
+
+        item = item->getProximo();
+    }
+
+    return nullptr;
 }
 
 #endif

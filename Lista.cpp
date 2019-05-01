@@ -58,7 +58,6 @@ void Lista<T>::insereFim(T* tipo) {
 
 template <class T>
 void Lista<T>::insereApos(Item<T>* itemAnterior, T* tipo) {
-    std::cout << "insere apos\n";
     Item<T>* item = new Item<T>();
     item->setTipo(tipo);
     item->setProximo(nullptr);

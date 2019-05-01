@@ -1,4 +1,5 @@
 #include <string>
+#include <iomanip>
 
 #include "Lista.h"
 #include "Curso.h"
@@ -14,6 +15,9 @@ void imprimirCursos(Lista<Curso>* cursos);
 void imprimirPessoas(Lista<Pessoa>* pessoas);
 
 int main() {
+    std::cout << std::fixed;
+    std::cout << std::setprecision(2);
+
     int quantidadeCursos, quantidadeAlunos;
     Lista<Curso>* cursos;
     Lista<Pessoa>* pessoas;

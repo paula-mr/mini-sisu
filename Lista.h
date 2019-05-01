@@ -11,6 +11,7 @@ class Lista {
     private:
         Item<T>* head;
         Item<T>* tail;
+        int tamanho;
 
     public:
         Lista();
@@ -21,6 +22,7 @@ class Lista {
         void retira(Item<T>* tipo);
         Item<T>* getHead();
         Item<T>* getTail();
+        int getTamanho();
 };
 
 #endif

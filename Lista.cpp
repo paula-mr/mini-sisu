@@ -32,6 +32,7 @@ void Lista<T>::insereInicio(T* tipo) {
         this->head = item;
     }
 
+    this->tamanho++;
 }
 
 template <class T>
@@ -51,6 +52,8 @@ void Lista<T>::insereFim(T* tipo) {
         this->tail->setProximo(item);
         this->tail = item;
     }
+
+    this->tamanho++;
 }
 
 template <class T>
@@ -68,6 +71,7 @@ void Lista<T>::insereApos(Item<T>* itemAnterior, T* tipo) {
     item->setProximo(auxiliar);
     item->setAnterior(itemAnterior);
 
+    this->tamanho++;
 }
 
 template <class T>
@@ -75,8 +79,19 @@ void Lista<T>::retira(Item<T>* item) {
     Item<T>* anterior = item->getAnterior();
     Item<T>* proximo = item->getProximo();
 
-    anterior->setProximo(proximo);
-    proximo->setAnterior(anterior);
+    if (item == head)
+        head = proximo;
+
+    if (item == tail)
+        tail = anterior;
+
+    if (anterior != nullptr)
+        anterior->setProximo(proximo);
+
+    if (proximo != nullptr)
+        proximo->setAnterior(anterior);
+
+    this->tamanho--;
 }
 
 template <class T>
@@ -87,6 +102,11 @@ Item<T>* Lista<T>::getHead() {
 template <class T>
 Item<T>* Lista<T>::getTail() {
     return tail;
+}
+
+template <class T>
+int Lista<T>::getTamanho() {
+    return this->tamanho;
 }
 
 template class Lista<Curso>;

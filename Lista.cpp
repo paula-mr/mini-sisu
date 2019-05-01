@@ -40,8 +40,6 @@ template <class T>
 void Lista<T>::insereFim(T* tipo) {
     Item<T>* item = new Item<T>();
     item->setTipo(tipo);
-    item->setProximo(nullptr);
-    item->setAnterior(nullptr);
 
     if (this->head == nullptr) {
         this->head = item;
@@ -76,6 +74,9 @@ void Lista<T>::insereApos(Item<T>* itemAnterior, T* tipo) {
 
 template <class T>
 void Lista<T>::retira(Item<T>* item) {
+    if (item == nullptr)
+        return;
+
     Item<T>* anterior = item->getAnterior();
     Item<T>* proximo = item->getProximo();
 

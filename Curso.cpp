@@ -54,16 +54,13 @@ void Curso::inserirEspera(Pessoa* pessoa) {
         Item<Pessoa>* itemAnterior = nullptr;
 
         while (item != nullptr && !itemInserido) {
-
-            if (Pessoa::compararColocacao(item->getTipo(), pessoa, this->codigo) > 0) {
+            if (Pessoa::compararColocacao(item->getTipo(), pessoa, this->codigo) < 0) {
                 espera->insereApos(itemAnterior, pessoa);
                 itemInserido = true;
             }
-
             itemAnterior = item;
             item = item->getProximo();
         }
-
     }
 }
 

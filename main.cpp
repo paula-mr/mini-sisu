@@ -86,6 +86,7 @@ Lista<Pessoa>* lerPessoas(int quantidadeAlunos, Lista<Curso>* cursos) {
 }
 
 void calcularAprovados(Lista<Curso>* cursos, Lista<Pessoa>* pessoas) {
+
     Item<Curso>* itemCurso = cursos->getHead();
 
     while (itemCurso != nullptr) {
@@ -101,7 +102,6 @@ void verificarAprovados(Lista<Curso>* cursos, Lista<Pessoa>* pessoas) {
 
     while (item != nullptr) {
         validarAprovado(cursos, item);
-
         item = item->getProximo();
     }
 }
@@ -118,7 +118,8 @@ void validarAprovado(Lista<Curso>* cursos, Item<Pessoa>* item) {
 
             Item<Pessoa>* novoAprovado = segundaOpcao->getEspera()->getHead();
 
-            if (novoAprovado != nullptr) {
+            if (novoAprovado != nullptr && segundaOpcao->getAprovados()->getTamanho()
+                                            < segundaOpcao->getQuantidadeVagas()) {
                 segundaOpcao->getEspera()->retira(novoAprovado);
                 segundaOpcao->getAprovados()->insereFim(novoAprovado->getTipo());
                 novoAprovado->getTipo()->setAprovadaCurso(segundaOpcao->getCodigo());

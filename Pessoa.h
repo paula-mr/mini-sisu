@@ -31,9 +31,8 @@ class Pessoa {
         void setSegundaOpcao(int opcao);
         int getSegundaOpcao();
         bool isAprovadaPrimeiraOpcao();
-        void setAprovadaPrimeiraOpcao();
         bool isAprovadaSegundaOpcao();
-        void setAprovadaSegundaOpcao();
+        void setAprovadaCurso(int codigoCurso);
 
         static int compararColocacao(Pessoa* base, Pessoa* comparacao, int codigoCurso);
         static Item<Pessoa>* recuperarPorCodigo(Lista<Pessoa>* pessoas, int codigo);

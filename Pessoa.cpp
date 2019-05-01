@@ -52,16 +52,15 @@ bool Pessoa::isAprovadaPrimeiraOpcao() {
     return this->aprovadaPrimeiraOpcao;
 }
 
-void Pessoa::setAprovadaPrimeiraOpcao() {
-    this->aprovadaPrimeiraOpcao = true;
+void Pessoa::setAprovadaCurso(int codigoCurso) {
+    if (this->primeiraOpcao == codigoCurso)
+        this->aprovadaPrimeiraOpcao = true;
+    else if (this->segundaOpcao == codigoCurso)
+        this->aprovadaSegundaOpcao = true;
 }
 
 bool Pessoa::isAprovadaSegundaOpcao() {
     return this->aprovadaSegundaOpcao;
-}
-
-void Pessoa::setAprovadaSegundaOpcao() {
-    this->aprovadaSegundaOpcao = true;
 }
 
 int Pessoa::compararColocacao(Pessoa* base, Pessoa* comparacao, int codigoCurso) {

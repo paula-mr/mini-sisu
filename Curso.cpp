@@ -95,12 +95,9 @@ void Curso::calcularAprovados() {
 
     for (int i=0; i < this->quantidadeVagas; i++) {
         Pessoa* pessoa = item->getTipo();
-        this->aprovados->insereInicio(pessoa);
+        this->aprovados->insereFim(pessoa);
 
-        if (pessoa->getPrimeiraOpcao() == this->getCodigo())
-            pessoa->setAprovadaPrimeiraOpcao();
-        else
-            pessoa->setAprovadaSegundaOpcao();
+        pessoa->setAprovadaCurso(this->codigo);
 
         item = item->getProximo();
 

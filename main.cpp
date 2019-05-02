@@ -130,6 +130,7 @@ void validarAprovado(Lista<Curso>* cursos, Item<Pessoa>* item) {
             Curso* segundaOpcao = Curso::recuperarPorCodigo(cursos, pessoa->getSegundaOpcao());
             Item<Pessoa>* aprovadoPrimeiraOpcao = Pessoa::recuperarPorCodigo(segundaOpcao->getEspera(), pessoa->getCodigo());
             segundaOpcao->getEspera()->retira(aprovadoPrimeiraOpcao);
+
         }
     }
 

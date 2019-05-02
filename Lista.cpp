@@ -65,6 +65,7 @@ void Lista<T>::insereApos(Item<T>* itemAnterior, T* tipo) {
     Item<T>* auxiliar = itemAnterior->getProximo();
 
     itemAnterior->setProximo(item);
+    auxiliar->setAnterior(item);
 
     item->setProximo(auxiliar);
     item->setAnterior(itemAnterior);

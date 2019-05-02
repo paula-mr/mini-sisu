@@ -132,6 +132,7 @@ void validarAprovado(Lista<Curso>* cursos, Item<Pessoa>* item) {
             segundaOpcao->getEspera()->retira(aprovadoPrimeiraOpcao);
         }
     }
+
 }
 
 void imprimirCursos(Lista<Curso>* cursos) {

@@ -96,6 +96,35 @@ Curso* Curso::recuperarPorCodigo(Lista<Curso>* cursos, int codigo) {
     return nullptr;
 }
 
+void Curso::validarAprovadosDoisCursos(Lista<Curso>* cursos, Item<Pessoa>* item) {
+    Pessoa* pessoa = item->getTipo();
+
+    if (pessoa->isAprovadaPrimeiraOpcao()) {
+        if(pessoa->isAprovadaSegundaOpcao()) {
+            Curso* segundaOpcao = Curso::recuperarPorCodigo(cursos, pessoa->getSegundaOpcao());
+
+            Item<Pessoa>* aprovadoPrimeiraOpcao = Pessoa::recuperarPorCodigo(segundaOpcao->getAprovados(), pessoa->getCodigo());
+            segundaOpcao->getAprovados()->retira(aprovadoPrimeiraOpcao);
+
+            Item<Pessoa>* novoAprovado = segundaOpcao->getEspera()->getHead();
+
+            if (novoAprovado != nullptr && segundaOpcao->getAprovados()->getTamanho()
+                                            < segundaOpcao->getQuantidadeVagas()) {
+                segundaOpcao->getEspera()->retira(novoAprovado);
+                segundaOpcao->getAprovados()->insereFim(novoAprovado->getTipo());
+                novoAprovado->getTipo()->setAprovadaCurso(segundaOpcao->getCodigo());
+                validarAprovadosDoisCursos(cursos, novoAprovado);
+            }
+
+        } else {
+            Curso* segundaOpcao = Curso::recuperarPorCodigo(cursos, pessoa->getSegundaOpcao());
+            Item<Pessoa>* aprovadoPrimeiraOpcao = Pessoa::recuperarPorCodigo(segundaOpcao->getEspera(), pessoa->getCodigo());
+            segundaOpcao->getEspera()->retira(aprovadoPrimeiraOpcao);
+
+        }
+    }
+}
+
 void Curso::calcularAprovados() {
     Item<Pessoa>* item = this->espera->getHead();
 

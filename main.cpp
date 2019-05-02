@@ -8,8 +8,7 @@
 Lista<Curso>* lerCursos(int quantidadeCursos);
 Lista<Pessoa>* lerPessoas(int quantidadeAlunos, Lista<Curso>* cursos);
 void calcularAprovados(Lista<Curso>* cursos, Lista<Pessoa>* pessoas);
-void verificarAprovados(Lista<Curso>* cursos, Lista<Pessoa>* pessoas);
-void validarAprovado(Lista<Curso>* cursos, Item<Pessoa>* item);
+void removerDuplicacaoAprovados(Lista<Curso>* cursos, Lista<Pessoa>* pessoas);
 
 void imprimirCursos(Lista<Curso>* cursos);
 void imprimirPessoas(Lista<Pessoa>* pessoas);
@@ -28,7 +27,7 @@ int main() {
     pessoas = lerPessoas(quantidadeAlunos, cursos);
 
     calcularAprovados(cursos, pessoas);
-    verificarAprovados(cursos, pessoas);
+    removerDuplicacaoAprovados(cursos, pessoas);
     imprimirCursos(cursos);
 
     return 0;
@@ -97,43 +96,13 @@ void calcularAprovados(Lista<Curso>* cursos, Lista<Pessoa>* pessoas) {
     }
 }
 
-void verificarAprovados(Lista<Curso>* cursos, Lista<Pessoa>* pessoas) {
+void removerDuplicacaoAprovados(Lista<Curso>* cursos, Lista<Pessoa>* pessoas) {
     Item<Pessoa>* item = pessoas->getHead();
 
     while (item != nullptr) {
-        validarAprovado(cursos, item);
+        Curso::validarAprovadosDoisCursos(cursos, item);
         item = item->getProximo();
     }
-}
-
-void validarAprovado(Lista<Curso>* cursos, Item<Pessoa>* item) {
-    Pessoa* pessoa = item->getTipo();
-
-    if (pessoa->isAprovadaPrimeiraOpcao()) {
-        if(pessoa->isAprovadaSegundaOpcao()) {
-            Curso* segundaOpcao = Curso::recuperarPorCodigo(cursos, pessoa->getSegundaOpcao());
-
-            Item<Pessoa>* aprovadoPrimeiraOpcao = Pessoa::recuperarPorCodigo(segundaOpcao->getAprovados(), pessoa->getCodigo());
-            segundaOpcao->getAprovados()->retira(aprovadoPrimeiraOpcao);
-
-            Item<Pessoa>* novoAprovado = segundaOpcao->getEspera()->getHead();
-
-            if (novoAprovado != nullptr && segundaOpcao->getAprovados()->getTamanho()
-                                            < segundaOpcao->getQuantidadeVagas()) {
-                segundaOpcao->getEspera()->retira(novoAprovado);
-                segundaOpcao->getAprovados()->insereFim(novoAprovado->getTipo());
-                novoAprovado->getTipo()->setAprovadaCurso(segundaOpcao->getCodigo());
-                validarAprovado(cursos, novoAprovado);
-            }
-
-        } else {
-            Curso* segundaOpcao = Curso::recuperarPorCodigo(cursos, pessoa->getSegundaOpcao());
-            Item<Pessoa>* aprovadoPrimeiraOpcao = Pessoa::recuperarPorCodigo(segundaOpcao->getEspera(), pessoa->getCodigo());
-            segundaOpcao->getEspera()->retira(aprovadoPrimeiraOpcao);
-
-        }
-    }
-
 }
 
 void imprimirCursos(Lista<Curso>* cursos) {

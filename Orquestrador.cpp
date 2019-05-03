@@ -90,7 +90,8 @@ void Orquestrador::imprimirCursos(Lista<Curso>* cursos) {
 
         imprimirPessoas(curso->getEspera());
 
-        std::cout << "\n";
+        if (item->getProximo() != nullptr)
+            std::cout << "\n";
 
         item = item->getProximo();
     }

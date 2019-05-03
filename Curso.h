@@ -30,7 +30,7 @@ class Curso {
         Lista<Pessoa>* getEspera();
         void calcularAprovados();
 
-        static void validarAprovadosDoisCursos(Lista<Curso>* cursos, Item<Pessoa>* item);
+        static void validarAprovadosDoisCursos(Lista<Curso>* cursos, Pessoa* pessoa);
         static Curso* recuperarPorCodigo(Lista<Curso>* cursos, int codigo);
 };
 

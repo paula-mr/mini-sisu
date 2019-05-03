@@ -70,7 +70,7 @@ void Orquestrador::removerDuplicacaoAprovados(Lista<Curso>* cursos, Lista<Pessoa
     Item<Pessoa>* item = pessoas->getHead();
 
     while (item != nullptr) {
-        Curso::validarAprovadosDoisCursos(cursos, item);
+        Curso::validarAprovadosDoisCursos(cursos, item->getTipo());
         item = item->getProximo();
     }
 }

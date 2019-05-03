@@ -128,7 +128,7 @@ void Curso::validarAprovadosDoisCursos(Lista<Curso>* cursos, Item<Pessoa>* item)
 void Curso::calcularAprovados() {
     Item<Pessoa>* item = this->espera->getHead();
 
-    for (int i=0; i < this->quantidadeVagas && item != nullptr; i++) {
+    while(this->aprovados->getTamanho() < this->quantidadeVagas && item != nullptr) {
         Pessoa* pessoa = item->getTipo();
         this->aprovados->insereFim(pessoa);
 
